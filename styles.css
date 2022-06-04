@@ -1,0 +1,124 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex-direction: column; */
+    border: 2px solid black;
+    height: 98vh;
+    width: 99vw;
+}
+
+.calculator{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 400px;
+    height: 650px;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: #212121;
+}
+
+.display-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    font-family: monospace, sans-serif;
+    width: 360px;
+    height: 110px;
+    margin-top: 20px;
+    background-color: #353535;
+    border-radius: 15px;
+    box-shadow: 0px 3px 3px 0px;
+    
+}
+
+.currentNumber{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    font-size: 2.5rem;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    color: white;
+}
+
+.previousNumber{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    font-size: 1.5rem;
+    padding-right: 10px;
+    margin-bottom: 20px;
+    color: #56886E;
+}
+
+.button-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* border: 2px solid yellow; */
+    width: 410px;
+    height: 500px;
+    margin-top: 10px;
+    gap: 25px;
+}
+
+.button-container  .row{
+    display: flex;
+    justify-content: space-between;
+    gap: 17px;
+}
+
+.row  button{
+    outline: none;
+    border-radius: 50%;
+    font-size: 1.7rem;
+    font-family: monospace;
+    font-weight: 1000;
+    width: 75px;
+    height: 75px;
+    background: #616161;
+    border: 0px solid transparent;
+    box-shadow: 4px 5px 5px 0px rgba(0,0,0,0.5);
+    color: white;
+    cursor: pointer;
+}
+
+.row  button:hover{
+    transform: scale(1.05);
+    transition: all .07s;
+    background: #bdbdbd;
+    color: #4b4b4b
+}
+
+#all-clear{
+    width: 160px;
+    border-radius: 45px;
+}
+
+#all-clear:hover{
+    background: lightcoral;
+    color: white;
+}
+
+#clear:hover{
+    background: lightcoral;
+    color: white;
+}
+
+#equals{
+    width: 160px;
+    border-radius: 45px;
+}
+
+#equals:hover{
+    background: limegreen;
+    color: white;
+}
+
+#op:hover{
+    background: turquoise;
+}
+
