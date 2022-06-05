@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
+    <script>console.warn = () => {};</script>
     <script src="main.js" defer></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,26 +26,26 @@
                     <button id="op">÷</button>
                 </div>
                 <div class="row">
-                    <button>7</button>
-                    <button>8</button>
-                    <button>9</button>
+                    <button data-number="7">7</button>
+                    <button data-number="8">8</button>
+                    <button data-number="9">9</button>
                     <button id="op">×</button>
                 </div>
                 <div class="row">
-                    <button>4</button>
-                    <button>5</button>
-                    <button>6</button>
+                    <button data-number="4">4</button>
+                    <button data-number="5">5</button>
+                    <button data-number="6">6</button>
                     <button id="op">−</button>
                 </div>
                 <div class="row">
-                    <button>1</button>
-                    <button>2</button>
-                    <button>3</button>
+                    <button data-number="1">1</button>
+                    <button data-number="2">2</button>
+                    <button data-number="3">3</button>
                     <button id="op">+</button>
                 </div>
                 <div class="row">
                     <button>.</button>
-                    <button>0</button>
+                    <button data-number="0">0</button>
                     <button id="equals">=</button>
                 </div>
             </div>
