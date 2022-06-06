@@ -1,3 +1,4 @@
+// Setting up defaults and selecting buttons
 let currentNumber = ''
 let previousNumber = ''
 let operator = ''
@@ -7,6 +8,10 @@ const current_display = document.querySelector('.currentNumber')
 const previous_display = document.querySelector('.previousNumber')
 const numberButtons = document.querySelectorAll('[data-number]')
 const operators = document.querySelectorAll('#op')
+
+window.addEventListener('keydown', function(e){
+    keyboardHandler(e)
+})
 
 const decimalButton = document.querySelector('.decimal')
 decimalButton.addEventListener('click', function(){
@@ -31,6 +36,7 @@ numberButtons.forEach(button => button.addEventListener('click', function(){
     numberHandler(button.dataset.number)
 }))
 
+// Function to take input and display when number key is clicked
 function numberHandler(number){
     if (currentNumber.length <= 14){
         currentNumber += number
@@ -39,12 +45,14 @@ function numberHandler(number){
 }
 
 operators.forEach(operator => operator.addEventListener('click', function(){
-    operatorHandler(operator)
+    operatorHandler(operator.innerHTML)
+    console.log(operator.innerHTML)
 }))
 
+// Function logic when any operator key is clicked
 function operatorHandler(op){
     if (currentNumber != ''){
-        operator = op.innerHTML
+        operator = op
         console.log(operator)
 
         if (isCleared){
@@ -69,6 +77,7 @@ function operatorHandler(op){
     // currentNumber = ''
 }
 
+// Function when equals key is clicked
 function calculate(){
     currentNumber = Number(currentNumber)
     previousNumber = Number(previousNumber)
@@ -106,6 +115,7 @@ function calculate(){
 
 }
 
+// Function to display results after calculation
 function displayResult(result){
     previous_display.textContent = ''
     result = String(result)
@@ -117,6 +127,7 @@ function displayResult(result){
     console.log(currentNumber);
 }
 
+// Logic for AC button
 function allClear(){
     currentNumber = ''
     previousNumber = ''
@@ -126,15 +137,50 @@ function allClear(){
     isCleared = true
 }
 
+// Logic for C button
 function clear(){
     currentNumber = String(currentNumber)
     currentNumber = currentNumber.slice(0, -1)
     current_display.textContent = currentNumber
 }
 
+// Logic for decimal button
 function decimal(){
     if (!currentNumber.includes('.')){
         currentNumber += '.'
         current_display.textContent = currentNumber
     }
+}
+
+function keyboardHandler(e){
+    console.log(e.key);
+    if (e.key >=0 && e.key <=9){
+        numberHandler(e.key)
+    }
+
+    if (e.key === '+') {
+        operatorHandler(e.key)
+        return
+    }
+    if (e.key === '-') {
+        operatorHandler('−')
+        return
+    }
+
+    if (e.key === '/') {
+        operatorHandler('÷')
+        return
+    }
+
+    if (e.key === '*' || e.key === 'x') {
+        operatorHandler('×')
+        return
+    }
+
+    if (e.key === 'Enter' || e.key ===  '=' && currentNumber != '' && previousNumber != ''){
+        calculate()
+    }
+
+    if (e.key === 'Backspace') clear()
+    if (e.key === ' ') allClear()
 }
