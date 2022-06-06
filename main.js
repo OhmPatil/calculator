@@ -7,11 +7,20 @@ const current_display = document.querySelector('.currentNumber')
 const previous_display = document.querySelector('.previousNumber')
 const numberButtons = document.querySelectorAll('[data-number]')
 const operators = document.querySelectorAll('#op')
+
+const decimalButton = document.querySelector('.decimal')
+decimalButton.addEventListener('click', function(){
+    decimal()
+})
+
 const allClearButton = document.querySelector('#all-clear')
 allClearButton.addEventListener('click', function(){
     allClear()
 })
 const clearButton = document.querySelector('#clear')
+clearButton.addEventListener('click', function(){
+    clear()
+})
 
 const equalsButton = document.querySelector('#equals')
 equalsButton.addEventListener('click', function(){
@@ -34,17 +43,30 @@ operators.forEach(operator => operator.addEventListener('click', function(){
 }))
 
 function operatorHandler(op){
-    operator = op.innerHTML
-    console.log(operator)
+    if (currentNumber != ''){
+        operator = op.innerHTML
+        console.log(operator)
 
-    if (isCleared){
-        previousNumber = currentNumber
+        if (isCleared){
+            previousNumber = currentNumber
+        }
+        if (!result){
+            previousNumber = currentNumber
+        }
+        previous_display.textContent = previousNumber + " " + operator
+            currentNumber = ''
     }
-    if (!result){
-        previousNumber = currentNumber
-    }
-    previous_display.textContent = previousNumber + " " + operator
-    currentNumber = ''
+    // operator = op.innerHTML
+    // console.log(operator)
+
+    // if (isCleared){
+    //     previousNumber = currentNumber
+    // }
+    // if (!result){
+    //     previousNumber = currentNumber
+    // }
+    // previous_display.textContent = previousNumber + " " + operator
+    // currentNumber = ''
 }
 
 function calculate(){
@@ -54,18 +76,18 @@ function calculate(){
     if (operator === '+'){
         result = previousNumber + currentNumber
         previousNumber = result
-        isCleared = false
+        // isCleared = false
     }
     else if (operator === '−'){
         result = previousNumber - currentNumber
         previousNumber = result
-        isCleared = false
+        // isCleared = false
     }
     else if (operator === '÷'){
         if (currentNumber > 0){
             result = previousNumber / currentNumber
             previousNumber = result
-            isCleared = false
+            // isCleared = false
         }
         else{
             result = 'lmao nice try'
@@ -76,10 +98,12 @@ function calculate(){
     else if (operator === '×'){
         result = previousNumber * currentNumber
         previousNumber = result
-        isCleared = false
+        // isCleared = false
     }
     
     displayResult(result)
+    isCleared = false
+
 }
 
 function displayResult(result){
@@ -100,4 +124,17 @@ function allClear(){
     current_display.textContent = '0'
     previous_display.textContent = ''
     isCleared = true
+}
+
+function clear(){
+    currentNumber = String(currentNumber)
+    currentNumber = currentNumber.slice(0, -1)
+    current_display.textContent = currentNumber
+}
+
+function decimal(){
+    if (!currentNumber.includes('.')){
+        currentNumber += '.'
+        current_display.textContent = currentNumber
+    }
 }
